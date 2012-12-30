@@ -1,0 +1,4 @@
+.film-picture { height:200px; }
+.film-item { height:350px; }
+.film-item .edit-options { display:none; }
+.editing .edit-options { display:block; }
