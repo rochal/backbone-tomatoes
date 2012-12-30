@@ -1,12 +1,10 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
   'router'
-], function($, _, Backbone, Router){
+], function(Router){
 
   var init = function(){
 
+  	// create application router
     this.router = new Router();
   };
 

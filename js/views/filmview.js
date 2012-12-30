@@ -1,14 +1,14 @@
 define([
-    'jquery',
-    'backbone',
-    'handlebars',
-    'app',
-    'utils',
-    'models/film',
-
-    //templates
-    'text!templates/film.html'
-], function($, Backbone, Handlebars, App, Utils, Film, FilmTemplate){
+  //libs
+  'jquery',
+  'backbone',
+  'handlebars',
+  'utils',
+  //models
+  'models/film',
+  //templates
+  'text!templates/film.html'
+], function($, Backbone, Handlebars, Utils, Film, FilmTemplate){
 
   var FilmView = Backbone.View.extend({
 

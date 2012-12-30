@@ -1,21 +1,24 @@
 define([
-    'jquery',
-    'backbone',
-    'handlebars',
-    'utils',
-    'models/library',
-    'views/filmview',
-    'views/menuview',
-    'models/film'
-], function($, Backbone, Handlebars, Utils, Library, FilmView, MenuView, Film){
+  //libs
+  'jquery',
+  'backbone',
+  'handlebars',
+  'utils',
+  //models
+  'models/main',
+  'models/film',
+  //views
+  'views/filmview',
+  'views/menuview'    
+], function($, Backbone, Handlebars, Utils, Main, Film, FilmView, MenuView){
 
-  var LibraryView = Backbone.View.extend({
+  var MainView = Backbone.View.extend({
 
-    el: "#library",
+    el: "#main",
 
     initialize: function() {
 
-      this.model = new Library();
+      this.model = new Main();
       this.listenTo(this.model, "change", this.render);
 
       this.menuView = new MenuView({ el: "#menu-holder" });
@@ -50,5 +53,5 @@ define([
 
   });
 
-  return LibraryView;
+  return MainView;
 });

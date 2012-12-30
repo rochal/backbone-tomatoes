@@ -1,9 +1,11 @@
-// Filename: models/library
 define([
-    'underscore',
-    'backbone',
-    'collections/filmcollection',
-    'models/film'
+  //libs
+  'underscore',
+  'backbone',
+  //collections
+  'collections/filmcollection',
+  //models
+  'models/film'
 ], function(_, Backbone, FilmCollection, Film){
 
   var LibraryModel = Backbone.Model.extend({

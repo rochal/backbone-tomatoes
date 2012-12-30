@@ -1,16 +1,15 @@
 define([
-    'jquery',
-    'backbone',
-    'handlebars',
-    'utils',
-    'models/menu',
-    'tomatoes',
-    'models/library',
-    'models/film',
-
-    //templates
-    'text!templates/menu.html'
-], function($, Backbone, Handlebars, Utils, Menu, Tomatoes, Library, Film, MenuTemplate){
+  //libs
+  'jquery',
+  'backbone',
+  'handlebars',
+  'utils',
+  'tomatoes',
+  //models    
+  'models/menu',
+  //templates
+  'text!templates/menu.html'
+], function($, Backbone, Handlebars, Utils, Tomatoes, Menu, MenuTemplate){
 
   var MenuView = Backbone.View.extend({
 

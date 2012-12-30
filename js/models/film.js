@@ -1,7 +1,6 @@
-// Filename: models/filmmodel
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function(_, Backbone){
 
   var FilmModel = Backbone.Model.extend({
@@ -11,7 +10,6 @@ define([
     },
 
     initialize: function() {
-
     },
 
     rateIt: function() {
@@ -20,6 +18,5 @@ define([
     }
   });
 
-  // Return the model for the module
   return FilmModel;
 });

@@ -1,34 +1,28 @@
 define([
-  'jquery', 
+  //libs
   'backbone', 
-  'underscore', 
-  'views/filmview',
-  'views/menuview',
-  'tomatoes',
-  'views/libraryview'
-], function($, Backbone, _, FilmView, MenuView, Tomatoes, LibraryView) {
+  //views
+  'views/mainview'
+], function(Backbone, MainView) {
 
   var Router = Backbone.Router.extend({
 
     initialize: function() {
 
-      this.libraryView = new LibraryView();
-      this.libraryView.render();
+      // create main application view
+      this.mainView = new MainView();
+      this.mainView.render();
 
+      // start listening for hash change
       Backbone.history.start();
     },
 
     routes: {
-      '':         'home',
-      'home':       'home',
       'search/:query':   'search' 
     },
 
-    home: function() {
-      //this.filmView.render();
-    },
-
     search: function(query) {
+      //nothing to see here yet!
       console.log(query);
     }
   });
