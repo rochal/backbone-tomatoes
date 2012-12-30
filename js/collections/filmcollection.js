@@ -9,8 +9,6 @@ define([
 
     model: Film,
 
-    url: '',
-
     //get movies older than year
     getBeforeYear: function(year) {
       return this.filter(function(film){ return film.get('year') < year });
@@ -25,8 +23,11 @@ define([
     },
 
     getGoodByYear: function() {
-      return this.filter(function(film){ return film.get('ratings').critics_score >= 10 })
+      return this.filter(function(film){ return film.get('ratings').critics_score >= 50 })
+    },
 
+    getWithRating: function() {
+       return this.filter(function(film){ return film.get('ratings').critics_score >= 0 })
     }
 
   });

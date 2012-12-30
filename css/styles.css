@@ -1,4 +1,29 @@
-.film-picture { height:200px; }
-.film-item { height:350px; }
-.film-item .edit-options { display:none; }
-.editing .edit-options { display:block; }
+.film-item { 
+  float:left; text-align:center; position:relative; overflow: hidden;
+  margin:0 10px 10px 0; border:1px solid #000; border-radius: 4px;
+}
+.film-picture img { height:250px; width:170px; }
+.film-desc { float:left; }
+.film-title {
+  position: absolute; right: 0; bottom: 0; left: 0; padding: 5px;
+  background: #333; background: rgba(0, 0, 0, 0.75); color:#fff;
+}
+.film-options {
+  text-align: right; position:absolute; right:0; 
+  top:0; left:0; padding:5px; display:none; color:#fff;
+}
+.film-fav {
+  width:48px; height:48px; background:url(../img/57.png) no-repeat 0 0;
+}
+#film-list .over .film-options { display:block; }
+
+.film-search { margin-top:5px; }
+
+.icon-red, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], 
+.nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], 
+.navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], 
+.dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], 
+.dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], 
+.dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] {
+    background-image: url("../img/glyphicons-halflings-red.png");
+}

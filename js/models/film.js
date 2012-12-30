@@ -6,15 +6,16 @@ define([
   var FilmModel = Backbone.Model.extend({
 
     defaults: {
-      votes: 0
+      isFavourite: false
     },
 
     initialize: function() {
     },
 
-    rateIt: function() {
-      var votes = this.get("votes") + 1;
-      this.set("votes", votes);
+    // marks film as favourite
+    toggleFavourite: function() {
+      var isFav = this.get("isFavourite");
+      this.set("isFavourite", !isFav);
     }
   });
 

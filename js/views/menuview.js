@@ -14,8 +14,9 @@ define([
   var MenuView = Backbone.View.extend({
 
     events: {
-      'click #editMovies':  'editMovies',
-      'click #searchBtn':   'search'
+      'click #editMovies': 'editMovies',
+      'click #searchBtn':  'search',
+      'keypress #search':  'searchOnEnter'
     },
 
     render: function() {
@@ -36,8 +37,14 @@ define([
       Utils.events.trigger("film:edit", this.model);
     },
 
+    searchOnEnter: function(e) {
+      if (e.keyCode != 13) return;
+      this.search();
+    },
+
     search: function() {
-      var value = this.$el.find("#searchInput").val(),
+
+      var value = this.$el.find("#search").val(),
           self = this;
 
       var tomatoe = new Tomatoes();

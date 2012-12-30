@@ -4,13 +4,15 @@ define([
   'backbone',
   'handlebars',
   'utils',
+  //collections
+  'collections/filmcollection',
   //models
   'models/main',
   'models/film',
   //views
   'views/filmview',
   'views/menuview'    
-], function($, Backbone, Handlebars, Utils, Main, Film, FilmView, MenuView){
+], function($, Backbone, Handlebars, Utils, FilmCollection, Main, Film, FilmView, MenuView){
 
   var MainView = Backbone.View.extend({
 
@@ -29,7 +31,7 @@ define([
     render: function() {
 
       var self = this,
-          films = this.model.get('films').getGoodByYear();
+          films = this.model.get('films').getWithRating();
 
       self.$el.find('#film-list').html('');
       _.each(films, function(film, index) {
@@ -42,7 +44,7 @@ define([
 
     parseFilmData: function(data) {
 
-      var films = this.model.get('films');
+      var films = new FilmCollection();
       _.each(data.movies, function(value) {
         films.add(new Film(value));
       });

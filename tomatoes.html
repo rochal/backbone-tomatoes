@@ -5,9 +5,10 @@
 <title>Backbone Tomatoes</title>
   <script data-main="js/init" src="js/libs/require.js"></script>
   <script type="text/javascript" src="js/movie_data.js"></script>
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -15,13 +16,25 @@
   <div class="navbar">
     <div class="navbar-inner">
       <a class="brand" href="#">Backbone Tomatoes</a>
-      <div id="menu-holder"></div>
+      <div id="menu-holder">
+        <!-- templates/menu.html -->
+      </div>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span12">
-        <ul id="film-list" class="thumbnails"></ul>
+      <div class="span3">
+        <ul class="nav nav-list">
+          <li class="nav-header">Films</li>
+          <li class="active"><a href="#">My Films (0)</a></li>
+          <li><a href="#">Favourites (0)</a></li>
+          <li><a href="#">Top rated (0)</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+        <div id="film-list">
+          <!-- templates/film.html -->
+        </div>
       </div>
     </div>
   </div>
