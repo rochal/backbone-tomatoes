@@ -19,6 +19,8 @@
 
 .film-search { margin-top:5px; }
 
+/* Bootstrap overrides */
+.popover-title { font-weight:bold; }
 .icon-red, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], 
 .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], 
 .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], 

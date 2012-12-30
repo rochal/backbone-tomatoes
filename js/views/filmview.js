@@ -34,7 +34,6 @@ define([
 
         html: true,
         trigger: 'hover',
-        width: 400,
         title: this.model.get('title'),
         content: function() {
           // return popover html
