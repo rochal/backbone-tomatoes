@@ -7,7 +7,7 @@ Backbone Tomatoes is a simple boiler plate application demonstrating the the use
 * require.js http://requirejs.org/
 * Handlebars http://handlebarsjs.com/
 
-The application also uses Rotten Tomatoes API (http://developer.rottentomatoes.com/)  to display some cool movie data.
+The application also uses Rotten Tomatoes API (http://developer.rottentomatoes.com/) to display movie related data and Twitter's Bootstrap (http://twitter.github.com/bootstrap/) to simplify the creation of the UI.
 
 
 
