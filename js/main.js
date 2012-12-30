@@ -1,27 +1,27 @@
 require.config({
 
-	baseUrl: 'js',
-	paths: {
-		jquery: 'libs/jquery',
-		underscore: 'libs/underscore',
-		backbone: 'libs/backbone',
-		handlebars: 'libs/handlebars',
-		bootstrap: 'libs/bootstrap',
-		text: 'libs/text'
-	},
-	shim: 
-	{
-		backbone: {
-			'deps': ['jquery', 'underscore'],
-			'exports': 'Backbone'
-		},
-		underscore: {
-			'exports': '_'
-		},
-		handlebars: {
-			'exports': 'Handlebars'
-		}
-	}
+  baseUrl: 'js',
+  paths: {
+    jquery: 'libs/jquery',
+    underscore: 'libs/underscore',
+    backbone: 'libs/backbone',
+    handlebars: 'libs/handlebars',
+    bootstrap: 'libs/bootstrap',
+    text: 'libs/text'
+  },
+  shim: 
+  {
+    backbone: {
+      'deps': ['jquery', 'underscore'],
+      'exports': 'Backbone'
+    },
+    underscore: {
+      'exports': '_'
+    },
+    handlebars: {
+      'exports': 'Handlebars'
+    }
+  }
 });
 
 require([

@@ -1,20 +1,20 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone'
+  'jquery',
+  'underscore',
+  'backbone'
 ], function($, _, Backbone){
 
-	var Utils = {
+  var Utils = {
 
-		//create event bus for view-view communication
-		events: _.extend({}, Backbone.Events),
+    //create event bus for view-view communication
+    events: _.extend({}, Backbone.Events),
 
-		starify: function(msg)
-		{
-			return "***"+msg+"***";
-		}
+    starify: function(msg)
+    {
+      return "***"+msg+"***";
+    }
 
-	}
+  }
 
-	return Utils;
+  return Utils;
 });

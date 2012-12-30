@@ -1,14 +1,14 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone',
-	'router'
+  'jquery',
+  'underscore',
+  'backbone',
+  'router'
 ], function($, _, Backbone, Router){
 
-	var init = function(){
+  var init = function(){
 
-		this.router = new Router();
-	};
+    this.router = new Router();
+  };
 
-	return { init: init};
+  return { init: init};
 });

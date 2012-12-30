@@ -1,37 +1,37 @@
 define([
-	'jquery', 
-	'backbone', 
-	'underscore', 
-	'views/filmview',
-	'views/menuview',
-	'tomatoes',
-	'views/libraryview'
+  'jquery', 
+  'backbone', 
+  'underscore', 
+  'views/filmview',
+  'views/menuview',
+  'tomatoes',
+  'views/libraryview'
 ], function($, Backbone, _, FilmView, MenuView, Tomatoes, LibraryView) {
 
-	var Router = Backbone.Router.extend({
+  var Router = Backbone.Router.extend({
 
-		initialize: function() {
+    initialize: function() {
 
-			this.libraryView = new LibraryView();
-			this.libraryView.render();
+      this.libraryView = new LibraryView();
+      this.libraryView.render();
 
-			Backbone.history.start();
-		},
+      Backbone.history.start();
+    },
 
-		routes: {
-			'': 				'home',
-			'home': 			'home',
-			'search/:query': 	'search' 
-		},
+    routes: {
+      '':         'home',
+      'home':       'home',
+      'search/:query':   'search' 
+    },
 
-		home: function() {
-			//this.filmView.render();
-		},
+    home: function() {
+      //this.filmView.render();
+    },
 
-		search: function(query) {
-			console.log(query);
-		}
-	});
+    search: function(query) {
+      console.log(query);
+    }
+  });
 
-	return Router;
+  return Router;
 });
