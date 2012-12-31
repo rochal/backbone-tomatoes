@@ -4,19 +4,16 @@ define([
   'backbone',
   'handlebars',
   'utils',
-  'tomatoes',
   //models    
   'models/menu',
   //templates
   'text!templates/menu.html'
-], function($, Backbone, Handlebars, Utils, Tomatoes, Menu, MenuTemplate){
+], function($, Backbone, Handlebars, Utils, Menu, MenuTemplate){
 
   var MenuView = Backbone.View.extend({
 
     events: {
-      'click #editMovies': 'editMovies',
-      'click #searchBtn':  'search',
-      'keypress #search':  'searchOnEnter'
+      'click #editMovies': 'editMovies'
     },
 
     render: function() {
@@ -35,23 +32,6 @@ define([
 
     editMovies: function() {
       Utils.events.trigger("film:edit", this.model);
-    },
-
-    searchOnEnter: function(e) {
-      if (e.keyCode != 13) return;
-      this.search();
-    },
-
-    search: function() {
-
-      var value = this.$el.find("#search").val(),
-          self = this;
-
-      var tomatoe = new Tomatoes();
-
-      tomatoe.search(value, function(data) {
-        self.trigger('film:updateall', data);
-      });
     }
 
   });

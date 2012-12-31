@@ -28,6 +28,10 @@ define([
 
     getWithRating: function() {
        return this.filter(function(film){ return film.get('ratings').critics_score >= 0 })
+    },
+
+    getFavourite: function() {
+      return this.where({ isFavourite: true })
     }
 
   });

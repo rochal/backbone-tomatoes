@@ -4,6 +4,7 @@ define([
   'backbone',
   'handlebars',
   'utils',
+  'tomatoes',
   //collections
   'collections/filmcollection',
   //models
@@ -12,11 +13,16 @@ define([
   //views
   'views/filmview',
   'views/menuview'    
-], function($, Backbone, Handlebars, Utils, FilmCollection, Main, Film, FilmView, MenuView){
+], function($, Backbone, Handlebars, Utils, Tomatoes, FilmCollection, Main, Film, FilmView, MenuView){
 
   var MainView = Backbone.View.extend({
 
     el: "#main",
+
+    events: {
+      'click #searchBtn':  'search',
+      'keypress #search':  'searchOnEnter'
+    },
 
     initialize: function() {
 
@@ -24,14 +30,15 @@ define([
       this.listenTo(this.model, "change", this.render);
 
       this.menuView = new MenuView({ el: "#menu-holder" });
-      this.menuView.on("film:updateall", this.parseFilmData, this);
       this.menuView.render();
+
+      this.on("film:updateall", this.parseFilmData, this);      
     },
 
     render: function() {
 
       var self = this,
-          films = this.model.get('films').getWithRating();
+          films = this.model.get('films');
 
       self.$el.find('#film-list').html('');
       _.each(films, function(film, index) {
@@ -49,9 +56,27 @@ define([
         films.add(new Film(value));
       });
 
-      this.model.set('films', films);
+      this.model.set('filmcollection', films);
+      this.model.set('films', films.getWithRating());
       this.render();
-    }
+    },
+
+    searchOnEnter: function(e) {
+      if (e.keyCode != 13) return;
+      this.search();
+    },
+
+    search: function() {
+
+      var value = this.$el.find("#search").val(),
+          self = this;
+
+      var tomatoe = new Tomatoes();
+
+      tomatoe.search(value, function(data) {
+        self.trigger('film:updateall', data);
+      });
+    }    
 
   });
 

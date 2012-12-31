@@ -17,19 +17,20 @@
   <div class="navbar">
     <div class="navbar-inner">
       <a class="brand" href="#">Backbone Tomatoes</a>
-      <div id="menu-holder">
-        <!-- templates/menu.html -->
-      </div>
+        <div class="form-search film-search">
+          <div class="input-append">
+            <div class="span2"></div>
+            <input type="text" class="span4 search-query" id="search">
+            <button type="submit" class="btn" id="searchBtn">Search</button>
+          </div>  
+        </div>        
     </div>
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span3">
-        <ul class="nav nav-list">
-          <li class="nav-header">Films</li>
-          <li class="active"><a href="#">My Films (0)</a></li>
-          <li><a href="#">Favourites (0)</a></li>
-          <li><a href="#">Top rated (0)</a></li>
+        <ul id="menu-holder" class="nav nav-list">
+          <!-- templates/menu.html -->
         </ul>
       </div>
       <div class="span9">

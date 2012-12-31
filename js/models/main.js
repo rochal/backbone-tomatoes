@@ -8,20 +8,20 @@ define([
   'models/film'
 ], function(_, Backbone, FilmCollection, Film){
 
-  var LibraryModel = Backbone.Model.extend({
+  var MainModel = Backbone.Model.extend({
 
     initialize: function() {
 
+      //create initial collection from the provided data
       var films = new FilmCollection();
 
       _.each(movie_data.movies, function(value, index) {
         films.add(new Film(value));
       });
 
-      this.set('films', films);
+      this.set('filmcollection', films);
     }
   });
 
-  // Return the model for the module
-  return LibraryModel;
+  return MainModel;
 });

@@ -6,7 +6,8 @@ define([
 
   var MenuModel = Backbone.Model.extend({
     defaults: {
-      menuItems: ["Home", "Pictures", "About"]
+      totalFav: 0, 
+      totalTop: 0
     },
 
     initialize: function() {

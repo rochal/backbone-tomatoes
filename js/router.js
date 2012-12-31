@@ -18,12 +18,24 @@ define([
     },
 
     routes: {
-      'search/:query':   'search' 
+      '':               'newrelease',
+      'search/:query':  'search',
+      'fav':            'favourite'
     },
 
     search: function(query) {
       //nothing to see here yet!
       console.log(query);
+    },
+
+    newrelease: function() {
+      var films = this.mainView.model.get('filmcollection').getWithRating();
+      this.mainView.model.set('films', films);
+    },
+
+    favourite: function() {
+      var films = this.mainView.model.get('filmcollection').getFavourite();
+      this.mainView.model.set('films', films);
     }
   });
 
