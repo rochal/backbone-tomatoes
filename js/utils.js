@@ -9,12 +9,10 @@ define([
     // create event bus for view-view communication
     events: _.extend({}, Backbone.Events),
 
-    //
     starify: function(msg)
     {
       return "***"+msg+"***";
     }
-
   }
 
   return Utils;
