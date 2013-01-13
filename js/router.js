@@ -1,7 +1,7 @@
 define([
-  // libs
-  'backbone',
-  // views
+  //libs
+  'backbone', 
+  //views
   'views/mainview'
 ], function(Backbone, MainView) {
 
@@ -24,22 +24,18 @@ define([
     },
 
     search: function(query) {
-      // nothing to see here yet!
+      //nothing to see here yet!
       console.log(query);
     },
 
     newrelease: function() {
-
-      // get latest releases and update the list of films to display
-      var films = this.mainView.model.get('films').getWithRating();
-      this.mainView.model.set('displayfilms', films);
+      var films = this.mainView.model.get('filmcollection').getWithRating();
+      this.mainView.model.set('films', films);
     },
 
     favourite: function() {
-
-      // get user favourites and update the list of films to display
-      var films = this.mainView.model.get('films').getFavourite();
-      this.mainView.model.set('displayfilms', films);
+      var films = this.mainView.model.get('filmcollection').getFavourite();
+      this.mainView.model.set('films', films);
     }
   });
 
