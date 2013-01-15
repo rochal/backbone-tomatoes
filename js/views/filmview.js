@@ -1,4 +1,5 @@
 define([
+  'tomatoes',
   //libs
   'jquery',
   'bootstrap',
@@ -10,7 +11,7 @@ define([
   //templates
   'text!templates/film.html',
   'text!templates/filmpopover.html'
-], function($, Bootstrap, Backbone, Handlebars, Utils, Film, FilmTemplate, FilmPopoverTemplate){
+], function(Tomatoes, $, Bootstrap, Backbone, Handlebars, Utils, Film, FilmTemplate, FilmPopoverTemplate){
 
   var FilmView = Backbone.View.extend({
 
@@ -22,19 +23,28 @@ define([
       'mouseout .film-picture':   'mouseout'
     },
 
+    initialize: function() {
+      this.listenTo(this.model, "change", this.render);
+    },
+
     render: function() {
 
       var template = Handlebars.compile(FilmTemplate),
-          html = template(this.model.toJSON()),
-          self = this;
+          html = template(this.model.toJSON());
 
       this.$el.html(html);
 
-      this.$el.popover({
+      this.$el.popover(this.getPopover());
 
+      return this;
+    },
+
+    getPopover: function() {
+      var self = this;
+      var popover = {
         html: true,
         trigger: 'hover',
-        title: this.model.get('title'),
+        title: self.model.get('title'),
         content: function() {
           // return popover html
           var popTemplate = Handlebars.compile(FilmPopoverTemplate)
@@ -48,15 +58,8 @@ define([
 
           return (popPosition > docWidth) ? 'left' : 'right';
         }
-      });
-
-      return this;  
-    },
-
-    initialize: function() {
-      _.bindAll(this, "edit");
-      Utils.events.bind("film:edit", this.edit);
-      this.listenTo(this.model, "change", this.render);
+      };
+      return popover;
     },
 
     mouseover: function() {
@@ -69,12 +72,7 @@ define([
 
     toggleFavourite: function() {
       this.model.toggleFavourite();
-    },
-
-    edit: function() {
-      console.log("Film is being edited!", this.model.get("title"));
     }
-
   });
 
   return FilmView;

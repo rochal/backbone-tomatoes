@@ -1,9 +1,11 @@
 define([
-  //libs
-  'backbone', 
-  //views
-  'views/mainview'
-], function(Backbone, MainView) {
+  'tomatoes',
+  // libs
+  'backbone',
+  // views
+  'views/mainview',
+  'views/menuview'
+], function(Tomatoes, Backbone, MainView, MenuView) {
 
   var Router = Backbone.Router.extend({
 
@@ -19,6 +21,7 @@ define([
 
     routes: {
       '':               'newrelease',
+      'new':            'newrelease',
       'search/:query':  'search',
       'fav':            'favourite'
     },
@@ -29,13 +32,19 @@ define([
     },
 
     newrelease: function() {
-      var films = this.mainView.model.get('filmcollection').getWithRating();
-      this.mainView.model.set('films', films);
+      var films = Tomatoes.films.getWithRating();
+      this.mainView.model.set('displayfilms', films);
+
+      // trigger an event to update the menu
+      Tomatoes.events.trigger('router:change', Backbone.history.fragment);
     },
 
     favourite: function() {
-      var films = this.mainView.model.get('filmcollection').getFavourite();
-      this.mainView.model.set('films', films);
+      var films = this.mainView.model.get('favs').getWithRating();
+      this.mainView.model.set('displayfilms', films);
+
+      // trigger an event to update the menu
+      Tomatoes.events.trigger('router:change', Backbone.history.fragment);
     }
   });
 

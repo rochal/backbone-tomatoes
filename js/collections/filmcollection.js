@@ -1,15 +1,28 @@
 // Filename: models/book
 define([
+  'tomatoes',
   'underscore',
   'backbone',
   'models/film'
-], function(_, Backbone, Film){
+], function(Tomatoes, _, Backbone, Film){
 
   var FilmCollection = Backbone.Collection.extend({
 
     model: Film,
 
-    //get movies older than year
+    initialize: function() {
+      this.bind('add', this.addFilm, this);
+      this.bind('remove', this.removeFilm, this);
+    },
+
+    addFilm: function(flag) {
+      Tomatoes.events.trigger('collection:filmcollection:add', this);
+    },
+
+    removeFilm: function(flag) {
+      Tomatoes.events.trigger('collection:filmcollection:remove', this);
+    },
+
     getBeforeYear: function(year) {
       return this.filter(function(film){ return film.get('year') < year });
     },
@@ -36,6 +49,5 @@ define([
 
   });
 
-  // Return the model for the module
   return FilmCollection;
 });

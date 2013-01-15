@@ -1,7 +1,9 @@
 define([
+  'tomatoes',
+  // libs
   'underscore',
   'backbone'
-], function(_, Backbone){
+], function(Tomatoes, _, Backbone){
 
   var FilmModel = Backbone.Model.extend({
 
@@ -16,6 +18,9 @@ define([
     toggleFavourite: function() {
       var isFav = this.get("isFavourite");
       this.set("isFavourite", !isFav);
+
+      // toggle global event so we can add it to favs collection
+      Tomatoes.events.trigger('model:isFavourite:toggle', this);
     }
   });
 
