@@ -33,14 +33,14 @@ define([
       this.listenTo(this.model, "change", this.render);
 
       // create menu view and render it
-      this.menuView = new MenuView({ el: "#menu-holder" });
+      this.menuView = new MenuView({ el: "#menu-holder", parent: this });
       this.menuView.render();
     },
 
     render: function() {
 
       var self = this,
-          films = this.model.get('displayfilms');
+          films = this.model.get('films');
 
       // clear the list
       self.$el.find('#film-list').html('');
@@ -56,7 +56,7 @@ define([
 
     parseFilmData: function(data) {
 
-      // receive the film data
+      // receive the film data and reset display collection
       var films = new FilmCollection();
       _.each(data.movies, function(value) {
         films.add(new Film(value));
@@ -64,7 +64,7 @@ define([
       Tomatoes.films = films;
 
       // update films to display
-      this.model.set('displayfilms', films.getWithRating());
+      this.model.set('films', films.getWithRating());
 
       this.render();
     },
@@ -85,8 +85,20 @@ define([
         // trigger an event when data comes back
         self.parseFilmData(data);
       });
-    }
 
+      // create new search tag
+      // TODO: Move this to use Handlebars
+      var tags = this.$el.find('#recent-tags');
+
+      if (tags.find('span[data-tag='+value+']').length == 0)
+      {
+        var span = $('<span></span>');
+        span.toggleClass('label label-inverse')
+            .text(value)
+            .attr('data-tag', value);
+        this.$el.find('#recent-tags').append(span).append(' ');
+      }
+    }
   });
 
   return MainView;

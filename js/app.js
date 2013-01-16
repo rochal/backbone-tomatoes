@@ -1,12 +1,14 @@
 define([
+  'tomatoes',
   'router',
+  // collections
   'collections/filmcollection'
-], function(Router, FilmCollection){
+], function(Tomatoes, Router, FilmCollection){
 
   var init = function(){
 
     // create application router
-    this.router = new Router();
+    Tomatoes.router = new Router();
   };
 
   return { init: init };

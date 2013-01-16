@@ -14,8 +14,8 @@ define([
     initialize: function() {
     },
 
-    // marks film as favourite
     toggleFavourite: function() {
+      // marks film as favourite
       var isFav = this.get("isFavourite");
       this.set("isFavourite", !isFav);
 

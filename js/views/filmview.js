@@ -24,24 +24,29 @@ define([
     },
 
     initialize: function() {
+      // any change to the model will cause re-render
       this.listenTo(this.model, "change", this.render);
     },
 
     render: function() {
 
+      // build the template and update html
       var template = Handlebars.compile(FilmTemplate),
           html = template(this.model.toJSON());
-
       this.$el.html(html);
 
+      // attach popover
       this.$el.popover(this.getPopover());
 
+      // important return - we use this value
+      // in mainview render method when we append FilmViews
       return this;
     },
 
     getPopover: function() {
-      var self = this;
-      var popover = {
+
+      var self = this,
+      popover = {
         html: true,
         trigger: 'hover',
         title: self.model.get('title'),
@@ -71,7 +76,15 @@ define([
     },
 
     toggleFavourite: function() {
+
+      // toggle favourite on the model
       this.model.toggleFavourite();
+
+      // remove from UI if in favourites mode
+      if (Backbone.history.fragment == 'fav' && this.model.get('isFavourite') == false)
+      {
+        this.$el.fadeOut('slow');
+      }
     }
   });
 

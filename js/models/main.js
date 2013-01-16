@@ -6,40 +6,44 @@ define([
   // models
   'models/film',
   // collections
-  'collections/filmcollection'
-], function(Tomatoes, _, Backbone, Film, FilmCollection){
+  'collections/filmcollection',
+  'collections/favcollection',
+], function(Tomatoes, _, Backbone, Film, FilmCollection, FavCollection){
 
   var MainModel = Backbone.Model.extend({
 
     initialize: function() {
 
       // create initial collection from the provided load-time data
-      var films = new FilmCollection();
+      Tomatoes.films = new FilmCollection();
       _.each(movie_data.movies, function(value, index) {
-        films.add(new Film(value));
+        Tomatoes.films.add(new Film(value));
       });
-      Tomatoes.films = films;
-      this.set('displayfilms', films.getWithRating());
+
+      // we'll use this to store currently displayed collection of films
+      this.set('films', Tomatoes.films.getWithRating());
 
       // create favourites collection
-      this.set('favs', new FilmCollection());
+      this.set('favs', new FavCollection());
 
       // listen for favourite toggle
-      Tomatoes.events.on('model:isFavourite:toggle', this.toggleFilmFav, this);
+      Tomatoes.events.on('model:isFavourite:toggle', this.toggleFilmFavourite, this);
     },
 
-    toggleFilmFav: function(film) {
+    toggleFilmFavourite: function(film) {
 
-      // get favourite collection
-      var favs = this.get('favs');
-      var model = favs.get(film);
+      // add or remove the film from the colelction
+      var favs = this.get('favs'),
+          model = favs.get(film);
 
-      if (!model)
-      {
+      // add to the collection of model is not there yet, remove otherwise
+      if (!model) {
         favs.add(film);
       } else {
         favs.remove(film);
       }
+
+      //update favourites collection
       this.set('favs', favs);
     }
 

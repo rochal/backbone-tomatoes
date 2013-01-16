@@ -33,7 +33,7 @@ define([
 
     newrelease: function() {
       var films = Tomatoes.films.getWithRating();
-      this.mainView.model.set('displayfilms', films);
+      this.mainView.model.set('films', films);
 
       // trigger an event to update the menu
       Tomatoes.events.trigger('router:change', Backbone.history.fragment);
@@ -41,7 +41,7 @@ define([
 
     favourite: function() {
       var films = this.mainView.model.get('favs').getWithRating();
-      this.mainView.model.set('displayfilms', films);
+      this.mainView.model.set('films', films);
 
       // trigger an event to update the menu
       Tomatoes.events.trigger('router:change', Backbone.history.fragment);

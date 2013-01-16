@@ -11,16 +11,18 @@ define([
     model: Film,
 
     initialize: function() {
+
+      // add listeners
       this.bind('add', this.addFilm, this);
       this.bind('remove', this.removeFilm, this);
     },
 
     addFilm: function(flag) {
-      Tomatoes.events.trigger('collection:filmcollection:add', this);
+      Tomatoes.events.trigger('film:collection:add:', this);
     },
 
     removeFilm: function(flag) {
-      Tomatoes.events.trigger('collection:filmcollection:remove', this);
+      Tomatoes.events.trigger('film:collection:remove:', this);
     },
 
     getBeforeYear: function(year) {
