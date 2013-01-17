@@ -7,7 +7,7 @@ define([
   'models/film',
   // collections
   'collections/filmcollection',
-  'collections/favcollection',
+  'collections/favcollection'
 ], function(Tomatoes, _, Backbone, Film, FilmCollection, FavCollection){
 
   var MainModel = Backbone.Model.extend({
