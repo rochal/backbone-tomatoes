@@ -11,7 +11,7 @@ require.config({
     handlebars:   'libs/handlebars',
     bootstrap:    'libs/bootstrap',
     text:         'libs/text',
-    'backbone.localStorage': 'lib/backbone.localStorage'
+    localstore:   'libs/backbone.localstorage'
   },
 
   // handle non-AMD compatible modules
@@ -26,10 +26,6 @@ require.config({
     },
     handlebars: {
       exports: 'Handlebars'
-    },
-    'backbone.localStorage': {
-      deps: ['backbone'],
-      exports: 'Backbone'
     }
   }
 });
