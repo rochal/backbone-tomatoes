@@ -16,6 +16,7 @@ define([
 
       // create initial collection from the provided load-time data
       Tomatoes.films = new FilmCollection();
+
       _.each(movie_data.movies, function(value, index) {
         Tomatoes.films.add(new Film(value));
       });
@@ -24,7 +25,11 @@ define([
       this.set('films', Tomatoes.films.getWithRating());
 
       // create favourites collection
-      this.set('favs', new FavCollection());
+      var favs = new FavCollection();
+      favs.fetch();
+      Tomatoes.events.trigger('fav:collection:update', favs);
+      this.set('favs', favs);
+
 
       // listen for favourite toggle
       Tomatoes.events.on('model:isFavourite:toggle', this.toggleFilmFavourite, this);
@@ -37,14 +42,18 @@ define([
           model = favs.get(film);
 
       // add to the collection of model is not there yet, remove otherwise
-      if (!model) {
-        favs.add(film);
-      } else {
-        favs.remove(film);
-      }
-
+      // if (!model) {
+      //   favs.add(film);
+      // } else {
+      //   favs.remove(film);
+      // }
+      //favs.add(film);
+      //film.collection = favs;
+      favs.create(film);
+      //console.log(film.collection);
+      favs.localStorage.save();
       //update favourites collection
-      this.set('favs', favs);
+      //this.set('favs', favs);
     }
 
   });

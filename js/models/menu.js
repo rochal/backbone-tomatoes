@@ -14,7 +14,7 @@ define([
     initialize: function() {
 
       // listen for favourite change and update the total
-      Tomatoes.events.on('fav:collection:add fav:collection:remove', this.updateTotals, this);
+      Tomatoes.events.on('fav:collection:add fav:collection:remove fav:collection:update', this.updateTotals, this);
     },
 
     updateTotals: function(filmCollection) {

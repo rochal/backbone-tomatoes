@@ -5,22 +5,33 @@ define([
   'underscore',
   'backbone',
   'localstore',
-  'collections/filmcollection'
-], function(Tomatoes, _, Backbone, Store, FilmCollection){
+  'models/film'
+], function(Tomatoes, _, Backbone, Store, Film){
 
-  var FavCollection = FilmCollection.extend({
+  var FavCollection = Backbone.Collection.extend({
 
-    localStorage: new Store("FavsCollection"),
+    model: Film,
 
-    addFilm: function(flag) {
-      Tomatoes.events.trigger('fav:collection:add', this);
-      this.localStorage.save();
+    localStorage: new Backbone.LocalStorage("FavsCollection"),
+
+    initialize: function() {
+
+      // add listeners
+      this.bind('add', this.addFilm, this);
+      this.bind('remove', this.removeFilm, this);
     },
 
-    removeFilm: function(flag) {
+    addFilm: function(film) {
+      Tomatoes.events.trigger('fav:collection:add', this);
+    },
+
+    removeFilm: function(film) {
       Tomatoes.events.trigger('fav:collection:remove', this);
-      this.localStorage.save();
-    }
+    },
+
+    getWithRating: function() {
+       return this.filter(function(film){ return film.get('ratings').critics_score >= 0 })
+    },
 
   });
 
