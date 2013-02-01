@@ -41,19 +41,11 @@ define([
       var favs = this.get('favs'),
           model = favs.get(film);
 
-      // add to the collection of model is not there yet, remove otherwise
-      // if (!model) {
-      //   favs.add(film);
-      // } else {
-      //   favs.remove(film);
-      // }
-      //favs.add(film);
-      //film.collection = favs;
+      // create local storage collection
       favs.create(film);
-      //console.log(film.collection);
+
+      // save the local storage
       favs.localStorage.save();
-      //update favourites collection
-      //this.set('favs', favs);
     }
 
   });
